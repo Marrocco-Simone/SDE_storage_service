@@ -5,7 +5,7 @@ const stream = require("stream");
 async function storeImage(req, res) {
   try {
     const { title, img_b64 } = req.body;
-    const filename = `${title.replaceAll(" ", "_")}.jpeg`;
+    const filename = `${req.user.email.replaceAll("@", "__")}${title.replaceAll(" ", "_")}.jpeg`;
 
     const storage = new Storage({ credentials });
 
