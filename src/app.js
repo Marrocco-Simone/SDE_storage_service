@@ -1,8 +1,8 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
-const { requestLogger, pageNotFound } = require("./middleware");
-const { serverOnline } = require("./controllers");
+const { requestLogger, pageNotFound, authenticateToken } = require("./middleware");
+const { serverOnline, storeImage, getImagesUrls } = require("./controllers");
 
 // Set up the server
 const app = express();
@@ -11,6 +11,8 @@ app.use(cors({ origin: true }));
 
 app.use(requestLogger);
 app.get("/", serverOnline);
+app.post("/store", authenticateToken, storeImage);
+app.get("/urls", getImagesUrls);
 
 app.use(pageNotFound);
 
