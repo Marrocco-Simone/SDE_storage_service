@@ -2,9 +2,6 @@ const { bucket_name, credentials, image_base_url } = require("../env_objects");
 const { Storage } = require("@google-cloud/storage");
 
 async function getImagesUrls(req, res) {
-  console.log(bucket_name);
-  console.log(image_base_url);
-  console.log(credentials);
   try {
     // * Creates a client
     const storage = new Storage({ credentials });
