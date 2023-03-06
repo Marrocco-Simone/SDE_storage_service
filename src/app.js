@@ -14,6 +14,14 @@ app.get("/", serverOnline);
 app.post("/store", authenticateToken, storeImage);
 app.get("/urls", getImagesUrls);
 
+// * swagger endpoint
+const swaggerUi = require('swagger-ui-express');
+const fs = require("fs")
+const YAML = require('yaml')
+const file  = fs.readFileSync('./docs.yml', 'utf8')
+const swaggerDocument = YAML.parse(file)
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
 app.use(pageNotFound);
 
 // Start the server
